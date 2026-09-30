@@ -77,6 +77,12 @@ Public endpoints work without a key; opportunity signals then appear once they a
 webhooks and live opportunities need Basic or Pro; smart-LP signals and wallet positions need Pro. See
 [lpsignal.app](https://lpsignal.app) for plans and the full API reference.
 
+## What is pushed to you
+
+The stream, webhooks and Telegram carry the kinds you subscribe to: the core events `net_apr`, `tvl_outflow`, `depeg`
+and `smart_lp` by default. Short-term opportunities (`burst`: a very high net APR over the last 3 hours, still earning)
+are pushed only after you add them — `setSubscriptions([...])`, or for one stream `new SignalStream({ ..., kinds: ['burst'] })`.
+
 ## Custom rules
 
 On Basic (3 rules) and Pro (20 rules) you can set your own thresholds; a match reaches only you (stream, webhook,
@@ -85,7 +91,7 @@ Telegram) and carries `signal.rule = { id, name }`. Thresholds are fractions, li
 ```ts
 await lps.createRule({ kind: 'net_apr', name: 'Base, 15%+', minNet7d: 0.15, chains: ['base'] });
 await lps.createRule({ kind: 'depeg', name: 'early depeg', minDeviation: 0.003 });
-await lps.setDefaultSignals(false); // only rule matches and risk alerts from now on
+await lps.setSubscriptions(['net_apr', 'burst', 'depeg']); // what is pushed to you (rule matches always arrive)
 ```
 
 ```python

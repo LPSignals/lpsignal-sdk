@@ -74,6 +74,12 @@ asyncio.run(main())
 公开接口不需要 key，但机会信号要满 24 小时后才能看到。实时流、Webhook 和实时机会信号需要 Basic 或 Pro；Smart LP
 信号和钱包持仓需要 Pro。套餐和完整 API 文档见 [lpsignal.app](https://lpsignal.app)。
 
+## 推送哪些信号
+
+信号流、webhook 和 Telegram 推送你订阅的类型：核心事件 `net_apr`、`tvl_outflow`、`depeg`、`smart_lp` 默认开启。
+短时机会（`burst`：最近 3 小时净 APR 很高且仍在赚）需要添加后才推送——`setSubscriptions([...])`，或只对某个信号流
+`new SignalStream({ ..., kinds: ['burst'] })`。
+
 ## 自定义规则
 
 Basic（3 条规则）和 Pro（20 条规则）可以设置自己的阈值。命中只推送给你（信号流、webhook、Telegram），并带有
@@ -82,7 +88,7 @@ Basic（3 条规则）和 Pro（20 条规则）可以设置自己的阈值。命
 ```ts
 await lps.createRule({ kind: 'net_apr', name: 'Base, 15%+', minNet7d: 0.15, chains: ['base'] });
 await lps.createRule({ kind: 'depeg', name: 'early depeg', minDeviation: 0.003 });
-await lps.setDefaultSignals(false); // 之后只推送规则命中和风险提醒
+await lps.setSubscriptions(['net_apr', 'burst', 'depeg']); // 推送哪些类型（规则命中总会推送）
 ```
 
 ```python
