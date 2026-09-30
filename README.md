@@ -77,6 +77,21 @@ Public endpoints work without a key; opportunity signals then appear once they a
 webhooks and live opportunities need Basic or Pro; smart-LP signals and wallet positions need Pro. See
 [lpsignal.app](https://lpsignal.app) for plans and the full API reference.
 
+## Custom rules
+
+On Basic (3 rules) and Pro (20 rules) you can set your own thresholds; a match reaches only you (stream, webhook,
+Telegram) and carries `signal.rule = { id, name }`. Thresholds are fractions, like everything else.
+
+```ts
+await lps.createRule({ kind: 'net_apr', name: 'Base, 15%+', minNet7d: 0.15, chains: ['base'] });
+await lps.createRule({ kind: 'depeg', name: 'early depeg', minDeviation: 0.003 });
+await lps.setDefaultSignals(false); // only rule matches and risk alerts from now on
+```
+
+```python
+lps.create_rule({"kind": "tvl_outflow", "name": "big exits", "minDrop": 0.2, "windowHours": 6})
+```
+
 ## Development
 
 ```bash

@@ -74,6 +74,21 @@ asyncio.run(main())
 公开接口不需要 key，但机会信号要满 24 小时后才能看到。实时流、Webhook 和实时机会信号需要 Basic 或 Pro；Smart LP
 信号和钱包持仓需要 Pro。套餐和完整 API 文档见 [lpsignal.app](https://lpsignal.app)。
 
+## 自定义规则
+
+Basic（3 条规则）和 Pro（20 条规则）可以设置自己的阈值。命中只推送给你（信号流、webhook、Telegram），并带有
+`signal.rule = { id, name }`。阈值和其他字段一样用小数表示。
+
+```ts
+await lps.createRule({ kind: 'net_apr', name: 'Base, 15%+', minNet7d: 0.15, chains: ['base'] });
+await lps.createRule({ kind: 'depeg', name: 'early depeg', minDeviation: 0.003 });
+await lps.setDefaultSignals(false); // 之后只推送规则命中和风险提醒
+```
+
+```python
+lps.create_rule({"kind": "tvl_outflow", "name": "big exits", "minDrop": 0.2, "windowHours": 6})
+```
+
 ## 开发
 
 ```bash
