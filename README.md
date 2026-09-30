@@ -94,6 +94,18 @@ cd node && npm run build && LPSIGNAL_BASE_URL=https://api.lpsignal.app LPSIGNAL_
 cd python && LPSIGNAL_BASE_URL=https://api.lpsignal.app LPSIGNAL_API_KEY=lps_... python scripts/e2e.py
 ```
 
+## Releasing
+
+Both packages publish from GitHub Actions with trusted publishing (OIDC): there are no npm or PyPI tokens. Bump the
+version in `node/package.json` or `python/pyproject.toml`, commit, then push a matching tag:
+
+```bash
+git tag node-v0.1.1 && git push origin node-v0.1.1        # npm, with provenance
+git tag python-v0.1.0 && git push origin python-v0.1.0    # PyPI
+```
+
+The `release` environment only accepts those tags, and the job refuses a tag whose version differs from the package.
+
 ## License
 
 [MIT](LICENSE)
