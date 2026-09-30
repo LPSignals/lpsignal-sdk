@@ -77,7 +77,7 @@ asyncio.run(main())
 ## 推送哪些信号
 
 信号流、webhook 和 Telegram 推送你订阅的类型：核心事件 `net_apr`、`tvl_outflow`、`depeg`、`smart_lp` 默认开启。
-短时机会（`burst`：最近 3 小时净 APR 很高且仍在赚）需要添加后才推送——`setSubscriptions([...])`，或只对某个信号流
+短时机会（`burst`：最近 1 小时净 APR 很高且有真实成交）需要添加后才推送——`setSubscriptions([...])`，或只对某个信号流
 `new SignalStream({ ..., kinds: ['burst'] })`。
 
 ## 自定义规则

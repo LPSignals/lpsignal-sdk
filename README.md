@@ -80,7 +80,7 @@ webhooks and live opportunities need Basic or Pro; smart-LP signals and wallet p
 ## What is pushed to you
 
 The stream, webhooks and Telegram carry the kinds you subscribe to: the core events `net_apr`, `tvl_outflow`, `depeg`
-and `smart_lp` by default. Short-term opportunities (`burst`: a very high net APR over the last 3 hours, still earning)
+and `smart_lp` by default. Short-term opportunities (`burst`: a very high net APR over the last hour, on real trading)
 are pushed only after you add them — `setSubscriptions([...])`, or for one stream `new SignalStream({ ..., kinds: ['burst'] })`.
 
 ## Custom rules
