@@ -1,5 +1,9 @@
 # LPSignal SDK
 
+> **This repository has moved.** The SDKs now live in their own repositories:
+> [LPSignals/lpsignal-node](https://github.com/LPSignals/lpsignal-node) (npm `lpsignal`) and
+> [LPSignals/lpsignal-python](https://github.com/LPSignals/lpsignal-python) (PyPI `lpsignal`). This one is archived.
+
 Official clients for [LPSignal](https://lpsignal.app): net-of-impermanent-loss APR signals for blue-chip
 concentrated-liquidity pools (Uniswap v3/v4, PancakeSwap v3, Aerodrome and Velodrome Slipstream) on Ethereum,
 BNB Chain, Base, Arbitrum, Optimism and Polygon. Available for **Node.js** and **Python**.

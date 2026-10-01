@@ -1,5 +1,9 @@
 # LPSignal SDK
 
+> **本仓库已迁移。** SDK 已拆分为两个独立仓库：
+> [LPSignals/lpsignal-node](https://github.com/LPSignals/lpsignal-node)（npm `lpsignal`）和
+> [LPSignals/lpsignal-python](https://github.com/LPSignals/lpsignal-python)（PyPI `lpsignal`）。本仓库已归档。
+
 [LPSignal](https://lpsignal.app) 的官方客户端。LPSignal 为蓝筹集中流动性池（Uniswap v3/v4、PancakeSwap v3、
 Aerodrome / Velodrome Slipstream）提供扣除无常损失后的净 APR 信号，覆盖 Ethereum、BNB Chain、Base、Arbitrum、
 Optimism 和 Polygon。提供 **Node.js** 和 **Python** 两个版本。
